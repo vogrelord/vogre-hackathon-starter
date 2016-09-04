@@ -1,0 +1,23 @@
+{
+  "name": "tantsklass.fm",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "babelify": "^7.3.0",
+    "body-parser": "~1.15.1",
+    "browserify-middleware": "^7.0.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "eslint": "^3.4.0",
+    "express": "~4.13.4",
+    "express-layout": "^0.1.0",
+    "knex": "^0.11.10",
+    "morgan": "~1.7.0",
+    "pg": "^6.1.0",
+    "serve-favicon": "~2.3.0"
+  }
+}
