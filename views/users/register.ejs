@@ -1,34 +1,60 @@
-<form class="form-horizontal">
-<fieldset>
+<form id="register-form" method="post" class="form-horizontal">
+    <fieldset>
 
-<!-- Form Name -->
-<legend>Register</legend>
+    <!-- Form Name -->
+    <legend>Register</legend>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email</label>  
-  <div class="col-md-4">
-  <input id="email" name="email" type="text" class="form-control input-md">
-    
-  </div>
-</div>
+    <% if(error){ %>
+        <p class="bg-danger" style="padding:20px"><%-error%></p>
+    <%}%>
 
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="password">Password</label>
-  <div class="col-md-4">
-    <input id="password" name="password" type="password" class="form-control input-md">
-    
-  </div>
-</div>
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="email">Email</label>  
+    <div class="col-md-4">
+    <input id="email" name="email" type="text" class="form-control input-md" value='<%=email%>'>
+        
+    </div>
+    </div>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for=""></label>
-  <div class="col-md-4">
-    <button id="" name="" class="btn btn-primary">Register</button>
-  </div>
-</div>
+    <!-- Password input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="password">Password</label>
+    <div class="col-md-4">
+        <input v-model='password' id="password" name="password" value='<%=password%>' type="password" class="form-control input-md">
+        
+    </div>
+    </div>
 
-</fieldset>
+    <!-- Password input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="password">Confirm Password</label>
+    <div class="col-md-4">
+        <input v-model='passwordConfirm' id="password" name="confirmPassword" value='<%=confirmPassword%>' type="password" class="form-control input-md">
+        
+    </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <template v-if="passwordConfirm !== password">
+                <p class="bg-danger" style="padding:20px">Пароли должны совпадать</p>
+            </template>
+        </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for=""></label>
+        <div class="col-md-4">
+            <button id="" v-bind:disabled="password != passwordConfirm" name="" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+
+
+    </fieldset>
 </form>
+
+<script src="/js/register-form.js"></script>
