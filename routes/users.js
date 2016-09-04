@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('register-form');
+  res.render('users/register');
 });
 
 
