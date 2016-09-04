@@ -12,6 +12,8 @@ var app = express();
 
 var browserify = require('browserify-middleware');
 var layout = require('express-layout');
+var session = require('express-session');
+var passport = require('passport');
 
 var db = require('./db/db');
 
@@ -27,11 +29,72 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+app.use(session({ secret: 'the waiter is masturbator' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db('users').where({id}).first()
+    .then(user=>{
+          done(null, user);
+    }, err=>done(err));
+});
+
+
+
 app.use('/js', browserify(__dirname + '/public/javascripts', {transforms: ['babelify']}));
 
 app.use('/', routes);
 app.use('/users', users);
+
+const LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  async function(email, password, done) {
+    try{
+      const user = await db('users').where({email}).first('*');
+      if (!user) {
+        console.log(1);
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      console.log(password, user);
+
+      if (!require('bcrypt').compareSync(password, user.password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    } catch(err){
+      done(err);
+    }
+  }
+));
+
+app.get('/login', (req,res)=>{
+  res.render('login', {error: null, email: '', password: ''});
+});
+
+app.get('/logout', (req,res)=>{
+  req.logout();
+  res.redirect('/');
+});
+
+app.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                                    failureRedirect: '/login' }));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

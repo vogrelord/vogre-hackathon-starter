@@ -31,7 +31,8 @@ router.post('/register', async (req, res, next) => {
                       .insert({password: passwordHash, email})
                       .returning('id');
     const newUser = await knex('users').where({id}).first('*');
-    res.send(newUser);
+    req.login(newUser);
+    res.redirect('/');
   } catch(e){
     console.error(e);
     res.render('users/register', {email, password, confirmPassword, error: 'User with this email already exists'});
