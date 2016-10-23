@@ -1,0 +1,20 @@
+<div id="group-page">
+    <h1>Группа #<%=group.id%> <%=group.title%></h1>
+    <h3>
+    <div class = 'row'>
+        <div class='col-sm-6'>
+            <ul>
+                <%= students.forEach(s =>  %>
+                    <li><%= s.name %> <% s.email %></li>
+                <% ) %>
+            </ul>
+        </div>
+        <div class='col-sm-6'>
+            <ul>
+                <%= lessons.forEach(s =>  %>
+                    <li><%=lesson.createdAt%> <%= lesson.title %></li>
+                <% ) %>
+            </ul>
+        </div>
+    </div>
+</div>

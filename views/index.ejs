@@ -1,11 +1,222 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<style>
+   body{
+     background: #f1f1f1;
+   }
+   #header{
+     margin-top: 100px;
+   }
+
+   #subheader{
+     text-align: center;
+     margin-top: 36px;
+     font-size: 17px;
+   }
+
+   .register-form{
+     max-width: 400px;
+     margin: 0 auto;
+   }
+</style>
+
+<div class='ui container'>
+    <h1 id="header" class='ui header center aligned'>Танцкласс.FM</h1>
+    <p id='subheader'>Танцы в стиле <strong>Линди Хоп</strong>, <strong>Бальбоа</strong>, <strong>Соло Джаз</strong></h2>
+    <p id='subheader'><small>м. Цветной бульвар, Трубная, ул. Большой Каретный, 2</small></h2>
+    <div class="ui divider" style="margin: 3rem 0"></div>
+    <div class='ui doubling two column centered grid'>
+      <div class='ui column'>
+        <h3 class='ui header center aligned'>Записаться на занятия</h3>
+        <form class="ui segment form">
+          <div class="field">
+            <label>Имя</label>
+            <input type="text" name="first-name" placeholder="Имя для контактов">
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden" name="has-pair" placeholder="Есть пара">
+              <label>Есть пара</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>В группу</label>
+            <select type="text" name="phone" placeholder="Телефон для связи">
+              <option>Линди хоп от Дани с Машей, вт-чт 20:00</option>
+              <option>Линди хоп от Вогра и Апо, пн-ср 20:00</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Телефон</label>
+            <input type="text" name="phone" placeholder="Телефон для связи">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email для связи">
+          </div>
+          <div class="field">
+            <label>Комментарий</label>
+            <textarea name="comment" placeholder="Дополнительная информация"></textarea>
+          </div>
+          <button class="ui button" type="submit">Записаться</button>
+        </form>
+      </div>
+    </div>
+    
+    <h3 class='ui header center aligned'>Расписание занятий</h3>
+    
+    <h4>Понедельник</h4>
+    <div class='ui stackable two column centered grid'>
+      <div class='ui column'>
+        <div class='header'>
+          Большой зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+      <div class='ui column'>
+        <div class='header'>
+          Малый зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h4>Вторник</h4>
+    <div class='ui stackable two column centered grid'>
+      <div class='ui column'>
+        <div class='header'>
+          Большой зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+      <div class='ui column'>
+        <div class='header'>
+          Малый зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h4>Среда</h4>
+    <div class='ui stackable two column centered grid'>
+      <div class='ui column'>
+        <div class='header'>
+          Большой зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+      <div class='ui column'>
+        <div class='header'>
+          Малый зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h4>Четверг</h4>
+    <div class='ui stackable two column centered grid'>
+      <div class='ui column'>
+        <div class='header'>
+          Большой зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+      <div class='ui column'>
+        <div class='header'>
+          Малый зал
+        </div>
+        <table form class="ui table">
+          <tbody>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+            <tr>
+              <td>20:00-21:15</td>
+              <td>Линди хоп начинающие Вогр и Апо</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!--//расписание-->
+</div>
+
+<script>
+$('.ui.checkbox')
+  .checkbox()
+</script>

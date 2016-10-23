@@ -1,0 +1,22 @@
+
+<div class='ui container'>
+    <h1 class='ui header'>Pages</h1>
+
+    <a href="/cms/pages/create">Add new</a>
+
+    <table class='ui table'>
+        <tbody>
+            <% for(var i=0; i < pages.length; i++){ 
+                var page = pages[i];  
+                %>
+                <tr>
+                    <td><%= page.id %></td>
+                    <td><%= page.title %></td>
+                    <td><%= page.slug %></td>
+                    <td><a href="/cms/pages/<%=page.id%>">Edit</a></td>
+                    <td><a on click="confirm('Are you sure?')" href="/cms/pages/delete/<%=page.id%>">Delete</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

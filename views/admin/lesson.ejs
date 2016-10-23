@@ -1,0 +1,39 @@
+<div id="lesson-page">
+    <form class="form-horizontal col-md-6" @submit="submitAddForm">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="">Добавить урок</label>  
+                <div class="col-md-4">
+                    <input v-model="title" type="text" placeholder="Тема" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                    <textarea/>
+                </div>
+            </div>
+
+            </fieldset>
+        </form> 
+    <table id="groups" class='table'>
+        <thead>
+            <tr>
+                <th>студент</th>
+                <th>тип посещения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="visit in visits">
+                <td>{{visit.student.name}}</td>
+                <td>
+                    <a href='/admin/groups/{{group.id}}'>
+                        {{visit.type.title}}
+                    </a>
+                </td>
+                <td>
+                    <a @click="del(group.id)">удалить</a>
+                <td/>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/admin/groups.js"></script>

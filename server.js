@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,6 +9,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var cms = require('./routes/cms');
+
+var api = require('./routes/api');
 
 var app = express();
 
@@ -54,12 +59,18 @@ passport.deserializeUser(function(id, done) {
     }, err=>done(err));
 });
 
+browserify.settings({
+  transform: ['vueify']
+});
 
-
-app.use('/js', browserify(__dirname + '/public/javascripts', {transforms: ['babelify']}));
+app.use('/js', browserify(__dirname + '/public/javascripts', {
+    transform: ['vueify']
+}));
 
 app.use('/', routes);
+app.use('/api', api);
 app.use('/users', users);
+app.use('/cms', cms);
 
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -68,11 +79,8 @@ passport.use(new LocalStrategy(
     try{
       const user = await db('users').where({email}).first('*');
       if (!user) {
-        console.log(1);
         return done(null, false, { message: 'Incorrect username.' });
       }
-      console.log(password, user);
-
       if (!require('bcrypt').compareSync(password, user.password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
@@ -95,7 +103,7 @@ app.get('/logout', (req,res)=>{
 app.post('/login', passport.authenticate('local', { successRedirect: '/',
                                                     failureRedirect: '/login' }));
 
-
+/*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -107,7 +115,6 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -115,17 +122,6 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
+*/
 
 module.exports = app;
